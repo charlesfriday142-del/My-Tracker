@@ -19,6 +19,8 @@
       --gold: #f7b718;
       --light-gold: #ffd45c;
       --blue: #174f86;
+      --green: #0d6b39;
+      --red: #b42318;
       --text: #202020;
       --gray: #666666;
       --light: #f5f3ef;
@@ -37,6 +39,7 @@
     }
 
     /* TOP BAR */
+
     .topbar {
       background: var(--brown);
       color: white;
@@ -46,6 +49,7 @@
     }
 
     /* HEADER */
+
     header {
       background: white;
       padding: 18px 6%;
@@ -95,6 +99,7 @@
     }
 
     /* HERO */
+
     .hero {
       padding: 70px 6%;
       background: linear-gradient(135deg, #ffffff, #f3eee7);
@@ -115,12 +120,13 @@
     }
 
     /* TRACKING CARD */
+
     .tracking-card {
       max-width: 850px;
       background: white;
       padding: 40px;
       border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
       border: 1px solid #dddddd;
     }
 
@@ -165,11 +171,18 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s;
+      white-space: nowrap;
     }
 
     .track-btn:hover {
       background: var(--light-gold);
       transform: translateY(-1px);
+    }
+
+    .track-btn:disabled {
+      opacity: 0.7;
+      cursor: wait;
+      transform: none;
     }
 
     .tracking-links {
@@ -188,6 +201,7 @@
     }
 
     /* TRACKING RESULT */
+
     #trackingResult {
       display: none;
       max-width: 850px;
@@ -196,7 +210,7 @@
       background: white;
       border-left: 7px solid var(--gold);
       border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     #trackingResult h3 {
@@ -204,14 +218,62 @@
       margin-bottom: 12px;
     }
 
+    .result-loading {
+      color: #555;
+      font-size: 17px;
+    }
+
+    .result-error {
+      border-left-color: var(--red);
+    }
+
+    .result-success {
+      border-left-color: var(--gold);
+    }
+
     .status {
-      color: #0d6b39;
+      color: var(--green);
       font-weight: bold;
-      font-size: 18px;
-      margin-top: 8px;
+      font-size: 20px;
+      margin: 10px 0 20px;
+    }
+
+    .shipment-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .detail-box {
+      background: #f7f5f2;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid #e2ddd6;
+    }
+
+    .detail-box.full {
+      grid-column: 1 / -1;
+    }
+
+    .detail-label {
+      display: block;
+      color: #666;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .detail-value {
+      color: #222;
+      font-size: 17px;
+      font-weight: bold;
+      word-break: break-word;
     }
 
     /* RECENTLY TRACKED */
+
     .recent {
       padding: 65px 6%;
       background: #f7f5f2;
@@ -248,7 +310,7 @@
       padding: 55px 30px;
       text-align: center;
       border: 1px solid #dddddd;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
     }
 
     .package-icon {
@@ -268,8 +330,7 @@
       margin: auto auto 28px;
     }
 
-    .button-outline,
-    .button-gold {
+    .button-outline {
       display: inline-block;
       width: min(100%, 600px);
       padding: 17px;
@@ -279,21 +340,13 @@
       font-weight: bold;
       text-decoration: none;
       cursor: pointer;
-    }
-
-    .button-outline {
       border: 3px solid var(--blue);
       color: var(--blue);
       background: white;
     }
 
-    .button-gold {
-      border: none;
-      background: var(--gold);
-      color: #222;
-    }
-
     /* SERVICES */
+
     .services {
       padding: 70px 6%;
       background: white;
@@ -321,7 +374,8 @@
       color: #555;
     }
 
-    /* ACCORDION STYLE FOOTER */
+    /* FOOTER SECTIONS */
+
     .footer-sections {
       background: var(--brown);
       color: white;
@@ -329,7 +383,7 @@
 
     .footer-item {
       padding: 32px 6%;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       font-size: 28px;
       font-weight: bold;
       display: flex;
@@ -361,7 +415,9 @@
     }
 
     /* MOBILE */
+
     @media (max-width: 700px) {
+
       header {
         padding: 14px 20px;
       }
@@ -390,6 +446,14 @@
         width: 100%;
       }
 
+      .shipment-details {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-box.full {
+        grid-column: auto;
+      }
+
       .recent,
       .services {
         padding: 50px 20px;
@@ -404,6 +468,7 @@
         font-size: 23px;
       }
     }
+
   </style>
 </head>
 
@@ -414,7 +479,8 @@
   </div>
 
   <header>
-    <a href="#" class="logo">
+
+    <a href="#track" class="logo">
       <div class="logo-box">UPS</div>
       <div>Universal Parcel Service</div>
     </a>
@@ -424,20 +490,29 @@
       <a href="#services">Services</a>
       <a href="#support">Support</a>
     </nav>
+
   </header>
 
   <main>
 
+    <!-- TRACKING SECTION -->
+
     <section class="hero" id="track">
+
       <h1>Track a Package</h1>
+
       <div class="gold-line"></div>
 
       <div class="tracking-card">
+
         <h2>Tracking Number</h2>
 
-        <label for="trackingNumber">Enter your tracking number</label>
+        <label for="trackingNumber">
+          Enter your tracking number
+        </label>
 
         <div class="track-row">
+
           <input
             type="text"
             id="trackingNumber"
@@ -445,9 +520,14 @@
             autocomplete="off"
           >
 
-          <button class="track-btn" onclick="trackPackage()">
+          <button
+            class="track-btn"
+            id="trackButton"
+            onclick="trackPackage()"
+          >
             Track →
           </button>
+
         </div>
 
         <div class="tracking-links">
@@ -456,55 +536,80 @@
           <a href="#services">Other Tracking Services →</a>
           <a href="#support">Help ↗</a>
         </div>
+
       </div>
 
       <div id="trackingResult"></div>
+
     </section>
 
 
+    <!-- RECENTLY TRACKED -->
+
     <section class="recent">
+
       <div class="tabs">
         <div class="tab active">Recently Tracked</div>
         <div class="tab">Watchlist</div>
       </div>
 
       <div class="recent-card">
+
         <div class="package-icon">📦</div>
 
-        <h2>Recently Tracked Items</h2>
+        <h2>Track Your Shipment</h2>
 
         <p>
-          Track a package to view its shipment information and delivery journey.
+          Enter your assigned tracking number to view the latest
+          available shipment information and delivery status.
         </p>
 
-        <a href="#track" class="button-outline">Track a Package →</a>
+        <a href="#track" class="button-outline">
+          Track a Package →
+        </a>
+
       </div>
+
     </section>
 
 
+    <!-- SERVICES -->
+
     <section class="services" id="services">
+
       <h2 class="section-title">Our Services</h2>
 
       <div class="service-grid">
 
         <div class="service">
           <h3>Worldwide Tracking</h3>
-          <p>Track shipments across international routes using your assigned tracking number.</p>
+          <p>
+            Track shipments across international routes using your
+            assigned tracking number.
+          </p>
         </div>
 
         <div class="service">
           <h3>Shipment Updates</h3>
-          <p>View the latest available shipment status and tracking events.</p>
+          <p>
+            View the latest available shipment status and tracking
+            information.
+          </p>
         </div>
 
         <div class="service">
           <h3>Delivery Services</h3>
-          <p>Access package information from dispatch through delivery.</p>
+          <p>
+            Access shipment information from dispatch through delivery.
+          </p>
         </div>
 
       </div>
+
     </section>
 
+
+    <!-- SUPPORT FOOTER -->
 
     <section class="footer-sections" id="support">
 
@@ -539,22 +644,63 @@
 
 
   <footer>
-    <div class="footer-logo">UNIVERSAL PARCEL SERVICE</div>
+
+    <div class="footer-logo">
+      UNIVERSAL PARCEL SERVICE
+    </div>
 
     <p>
       © <span id="year"></span> Universal Parcel Service.
       All rights reserved.
     </p>
+
   </footer>
 
 
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
+
+    /* SUPABASE CONNECTION */
+
+    const SUPABASE_URL =
+      "https://ojghoyeyhewapabbdtuc.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_WG8kcXceyGv1fhdSLEZKJw_ckl73g-i";
+
+
+    const supabaseClient =
+      supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* FOOTER YEAR */
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
 
 
-    function trackPackage() {
+    /* PRESS ENTER TO TRACK */
+
+    document
+      .getElementById("trackingNumber")
+      .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+          trackPackage();
+        }
+
+      });
+
+
+    /* TRACK PACKAGE */
+
+    async function trackPackage() {
 
       const input =
         document.getElementById("trackingNumber");
@@ -565,64 +711,262 @@
       const result =
         document.getElementById("trackingResult");
 
+      const button =
+        document.getElementById("trackButton");
+
+
+      /* CHECK EMPTY */
 
       if (number === "") {
 
         result.style.display = "block";
 
+        result.className = "result-error";
+
         result.innerHTML = `
           <h3>Tracking Number Required</h3>
-          <p>Please enter a valid tracking number before continuing.</p>
+          <p>
+            Please enter a valid tracking number before continuing.
+          </p>
+        `;
+
+        result.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        return;
+      }
+
+
+      /* SHOW LOADING */
+
+      result.style.display = "block";
+
+      result.className = "";
+
+      result.innerHTML = `
+        <h3>Tracking Your Package</h3>
+        <p class="result-loading">
+          Retrieving shipment information...
+        </p>
+      `;
+
+      button.disabled = true;
+
+      button.textContent = "Searching...";
+
+
+      /*
+        SEARCH SUPABASE
+
+        It looks in the shipments table for the exact
+        tracking number entered by the customer.
+      */
+
+      const { data, error } =
+        await supabaseClient
+          .from("shipments")
+          .select(`
+            tracking_number,
+            status,
+            current_location,
+            destination,
+            shipment_update,
+            last_updated
+          `)
+          .eq("tracking_number", number)
+          .maybeSingle();
+
+
+      /* ENABLE BUTTON AGAIN */
+
+      button.disabled = false;
+
+      button.textContent = "Track →";
+
+
+      /* DATABASE ERROR */
+
+      if (error) {
+
+        console.error(error);
+
+        result.className = "result-error";
+
+        result.innerHTML = `
+          <h3>Unable to Retrieve Tracking Information</h3>
+
+          <p>
+            Please try again later.
+          </p>
         `;
 
         return;
       }
 
 
-      /*
-        TEMPORARY DEMO TRACKING
+      /* TRACKING NUMBER NOT FOUND */
 
-        Later, your private admin dashboard will control:
-        - tracking numbers
-        - origin
-        - destination
-        - current location
-        - status
-        - tracking events
-        - whether updates are paused
-      */
+      if (!data) {
 
-      result.style.display = "block";
+        result.className = "result-error";
+
+        result.innerHTML = `
+          <h3>Tracking Number Not Found</h3>
+
+          <p>
+            We could not find shipment information for
+            <strong>${escapeHtml(number)}</strong>.
+          </p>
+
+          <p style="margin-top: 10px; color: #555;">
+            Please check the tracking number and try again.
+          </p>
+        `;
+
+        result.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        return;
+      }
+
+
+      /* FORMAT DATE */
+
+      let updatedText = "Not available";
+
+      if (data.last_updated) {
+
+        const date =
+          new Date(data.last_updated);
+
+        if (!isNaN(date.getTime())) {
+
+          updatedText =
+            date.toLocaleString(
+              "en-US",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+              }
+            );
+
+        }
+
+      }
+
+
+      /* SHOW REAL SHIPMENT */
+
+      result.className = "result-success";
 
       result.innerHTML = `
-        <h3>Tracking Number: ${escapeHtml(number)}</h3>
 
-        <p class="status">
-          Tracking information is being retrieved.
-        </p>
+        <h3>
+          Shipment Found
+        </h3>
 
-        <p style="margin-top:12px; color:#555;">
-          This is the public tracking page. Your admin control
-          system will later connect real records created and managed
-          by you to this tracking number.
-        </p>
+        <div class="shipment-details">
+
+          <div class="detail-box">
+            <span class="detail-label">
+              Tracking Number
+            </span>
+
+            <div class="detail-value">
+              ${escapeHtml(data.tracking_number || "")}
+            </div>
+          </div>
+
+
+          <div class="detail-box">
+            <span class="detail-label">
+              Current Status
+            </span>
+
+            <div class="detail-value status">
+              ${escapeHtml(data.status || "Not available")}
+            </div>
+          </div>
+
+
+          <div class="detail-box">
+            <span class="detail-label">
+              Current Location
+            </span>
+
+            <div class="detail-value">
+              ${escapeHtml(data.current_location || "Not available")}
+            </div>
+          </div>
+
+
+          <div class="detail-box">
+            <span class="detail-label">
+              Destination
+            </span>
+
+            <div class="detail-value">
+              ${escapeHtml(data.destination || "Not available")}
+            </div>
+          </div>
+
+
+          <div class="detail-box full">
+            <span class="detail-label">
+              Latest Shipment Update
+            </span>
+
+            <div class="detail-value">
+              ${escapeHtml(
+                data.shipment_update ||
+                "No additional update is available."
+              )}
+            </div>
+          </div>
+
+
+          <div class="detail-box full">
+            <span class="detail-label">
+              Last Updated
+            </span>
+
+            <div class="detail-value">
+              ${escapeHtml(updatedText)}
+            </div>
+          </div>
+
+        </div>
+
       `;
+
 
       result.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
+
     }
 
+
+    /* SAFE TEXT DISPLAY */
 
     function escapeHtml(text) {
 
       const div =
         document.createElement("div");
 
-      div.textContent = text;
+      div.textContent =
+        String(text);
 
       return div.innerHTML;
+
     }
 
   </script>
